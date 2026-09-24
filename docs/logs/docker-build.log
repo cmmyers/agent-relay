@@ -1,0 +1,41 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  984.6kB
+Step 1/10 : FROM python:3.11-slim
+ ---> da047cb8f9d1
+Step 2/10 : COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+ ---> Using cache
+ ---> 80d40e2e5ec1
+Step 3/10 : WORKDIR /app
+ ---> Using cache
+ ---> 708522f15538
+Step 4/10 : COPY pyproject.toml uv.lock ./
+ ---> Using cache
+ ---> 938f4364a3de
+Step 5/10 : RUN uv sync --locked --no-install-project --no-dev
+ ---> Using cache
+ ---> e99c37537938
+Step 6/10 : COPY . .
+ ---> 1c7998d9d1a4
+Step 7/10 : RUN uv sync --locked --no-dev
+ ---> Running in da853f8672b0
+[91mResolved 35 packages in 2ms
+[0m[91mChecked 24 packages in 2ms
+[0m ---> Removed intermediate container da853f8672b0
+ ---> fb5420160bae
+Step 8/10 : ENV PATH="/app/.venv/bin:$PATH"
+ ---> Running in d7a7e84a0bcf
+ ---> Removed intermediate container d7a7e84a0bcf
+ ---> c87c7c3f453f
+Step 9/10 : EXPOSE 8000
+ ---> Running in e37618fa708d
+ ---> Removed intermediate container e37618fa708d
+ ---> 905cf7483601
+Step 10/10 : CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+ ---> Running in b8ceb9b67dc4
+ ---> Removed intermediate container b8ceb9b67dc4
+ ---> a9fbeffbfd66
+Successfully built a9fbeffbfd66
+Successfully tagged agent-relay:local

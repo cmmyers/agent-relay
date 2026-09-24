@@ -1,0 +1,776 @@
+test	Set up job	﻿2026-09-24T18:31:46.4804280Z Current runner version: '2.337.0'
+test	Set up job	2026-09-24T18:31:46.4830481Z ##[group]Runner Image Provisioner
+test	Set up job	2026-09-24T18:31:46.4831446Z Hosted Compute Agent
+test	Set up job	2026-09-24T18:31:46.4832218Z Version: 20260828.587
+test	Set up job	2026-09-24T18:31:46.4832947Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+test	Set up job	2026-09-24T18:31:46.4833753Z Build Date: 2026-08-28T16:44:25Z
+test	Set up job	2026-09-24T18:31:46.4834585Z Worker ID: {e903465d-5542-44eb-a83a-18313326b95c}
+test	Set up job	2026-09-24T18:31:46.4835347Z Azure Region: northcentralus
+test	Set up job	2026-09-24T18:31:46.4836063Z ##[endgroup]
+test	Set up job	2026-09-24T18:31:46.4837575Z ##[group]Operating System
+test	Set up job	2026-09-24T18:31:46.4838230Z Ubuntu
+test	Set up job	2026-09-24T18:31:46.4838932Z 24.04.5
+test	Set up job	2026-09-24T18:31:46.4839498Z LTS
+test	Set up job	2026-09-24T18:31:46.4840384Z ##[endgroup]
+test	Set up job	2026-09-24T18:31:46.4841038Z ##[group]Runner Image
+test	Set up job	2026-09-24T18:31:46.4841668Z Image: ubuntu-24.04
+test	Set up job	2026-09-24T18:31:46.4842355Z Version: 20260920.314.1
+test	Set up job	2026-09-24T18:31:46.4843458Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+test	Set up job	2026-09-24T18:31:46.4845711Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+test	Set up job	2026-09-24T18:31:46.4846714Z ##[endgroup]
+test	Set up job	2026-09-24T18:31:46.4848061Z ##[group]GITHUB_TOKEN Permissions
+test	Set up job	2026-09-24T18:31:46.4850967Z Contents: read
+test	Set up job	2026-09-24T18:31:46.4851699Z Metadata: read
+test	Set up job	2026-09-24T18:31:46.4852312Z Packages: read
+test	Set up job	2026-09-24T18:31:46.4852970Z ##[endgroup]
+test	Set up job	2026-09-24T18:31:46.4855413Z Secret source: Actions
+test	Set up job	2026-09-24T18:31:46.4856583Z Cache mode: write
+test	Set up job	2026-09-24T18:31:46.4857492Z Prepare workflow directory
+test	Set up job	2026-09-24T18:31:46.5305531Z Prepare all required actions
+test	Set up job	2026-09-24T18:31:46.5356161Z Getting action download info
+test	Set up job	2026-09-24T18:31:46.7780961Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+test	Set up job	2026-09-24T18:31:46.8689229Z Download action repository 'astral-sh/setup-uv@v5' (SHA:d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86)
+test	Set up job	2026-09-24T18:31:47.4849892Z Complete job name: test
+test	Initialize containers	﻿2026-09-24T18:31:47.5374448Z ##[group]Checking docker version
+test	Initialize containers	2026-09-24T18:31:47.5387686Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+test	Initialize containers	2026-09-24T18:31:47.5981965Z '1.48'
+test	Initialize containers	2026-09-24T18:31:47.5998437Z Docker daemon API version: '1.48'
+test	Initialize containers	2026-09-24T18:31:47.5999342Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+test	Initialize containers	2026-09-24T18:31:47.6159011Z '1.48'
+test	Initialize containers	2026-09-24T18:31:47.6172651Z Docker client API version: '1.48'
+test	Initialize containers	2026-09-24T18:31:47.6178048Z ##[endgroup]
+test	Initialize containers	2026-09-24T18:31:47.6181064Z ##[group]Clean up resources from previous jobs
+test	Initialize containers	2026-09-24T18:31:47.6186092Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=0b856c"
+test	Initialize containers	2026-09-24T18:31:47.6333123Z ##[command]/usr/bin/docker network prune --force --filter "label=0b856c"
+test	Initialize containers	2026-09-24T18:31:47.6462037Z ##[endgroup]
+test	Initialize containers	2026-09-24T18:31:47.6462667Z ##[group]Create local container network
+test	Initialize containers	2026-09-24T18:31:47.6473296Z ##[command]/usr/bin/docker network create --label 0b856c github_network_e3a06b768f974704b26c9f17eac3fe62
+test	Initialize containers	2026-09-24T18:31:47.7004970Z 2dca1fdf4da8b879acf444105e2e385b9e90eeb016118b8e12159b394ddc781d
+test	Initialize containers	2026-09-24T18:31:47.7026606Z ##[endgroup]
+test	Initialize containers	2026-09-24T18:31:47.7051936Z ##[group]Starting postgres service container
+test	Initialize containers	2026-09-24T18:31:47.7072330Z ##[command]/usr/bin/docker pull postgres:16
+test	Initialize containers	2026-09-24T18:31:48.1312841Z 16: Pulling from library/postgres
+test	Initialize containers	2026-09-24T18:31:48.2513984Z 6b37362b3da7: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2517423Z b1fdda8975a0: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2519099Z 106e7e3cf19a: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2521098Z ba0e979d0818: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2522900Z ad29720ebbb9: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2524044Z 3a749597affc: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2524929Z 483fb6941c15: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2525770Z 359ae0fc975d: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2526616Z 56d4d190ef07: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2527483Z 74156cf9f063: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2528359Z f7c7d4dd80ba: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2529272Z 749acf6dc637: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2530781Z 4d848243a73e: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2531721Z 6ad4758748c1: Pulling fs layer
+test	Initialize containers	2026-09-24T18:31:48.2532642Z 3a749597affc: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2533513Z 483fb6941c15: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2534381Z 359ae0fc975d: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2535241Z 56d4d190ef07: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2536091Z 74156cf9f063: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2536963Z f7c7d4dd80ba: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2538175Z 749acf6dc637: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2539466Z 4d848243a73e: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2540940Z 6ad4758748c1: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2542275Z ba0e979d0818: Waiting
+test	Initialize containers	2026-09-24T18:31:48.2543610Z ad29720ebbb9: Waiting
+test	Initialize containers	2026-09-24T18:31:48.3250430Z b1fdda8975a0: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.3252555Z b1fdda8975a0: Download complete
+test	Initialize containers	2026-09-24T18:31:48.3594345Z 106e7e3cf19a: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.3596298Z 106e7e3cf19a: Download complete
+test	Initialize containers	2026-09-24T18:31:48.4153935Z ba0e979d0818: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.4156201Z ba0e979d0818: Download complete
+test	Initialize containers	2026-09-24T18:31:48.4289287Z 6b37362b3da7: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.4291686Z 6b37362b3da7: Download complete
+test	Initialize containers	2026-09-24T18:31:48.4807263Z ad29720ebbb9: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.4809603Z ad29720ebbb9: Download complete
+test	Initialize containers	2026-09-24T18:31:48.4999713Z 483fb6941c15: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.5001892Z 483fb6941c15: Download complete
+test	Initialize containers	2026-09-24T18:31:48.5028948Z 3a749597affc: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.5688601Z 3a749597affc: Download complete
+test	Initialize containers	2026-09-24T18:31:48.5690953Z 359ae0fc975d: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.5693373Z 359ae0fc975d: Download complete
+test	Initialize containers	2026-09-24T18:31:48.5791970Z 74156cf9f063: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.5797408Z 74156cf9f063: Download complete
+test	Initialize containers	2026-09-24T18:31:48.6550897Z f7c7d4dd80ba: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.6553299Z f7c7d4dd80ba: Download complete
+test	Initialize containers	2026-09-24T18:31:48.6581229Z 749acf6dc637: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.6592114Z 749acf6dc637: Download complete
+test	Initialize containers	2026-09-24T18:31:48.7318149Z 6ad4758748c1: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.7321031Z 6ad4758748c1: Download complete
+test	Initialize containers	2026-09-24T18:31:48.7434243Z 4d848243a73e: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.7436039Z 4d848243a73e: Download complete
+test	Initialize containers	2026-09-24T18:31:48.9723549Z 56d4d190ef07: Verifying Checksum
+test	Initialize containers	2026-09-24T18:31:48.9725586Z 56d4d190ef07: Download complete
+test	Initialize containers	2026-09-24T18:31:49.5304229Z 6b37362b3da7: Pull complete
+test	Initialize containers	2026-09-24T18:31:52.7150829Z b1fdda8975a0: Pull complete
+test	Initialize containers	2026-09-24T18:31:52.8812285Z 106e7e3cf19a: Pull complete
+test	Initialize containers	2026-09-24T18:31:52.9200812Z ba0e979d0818: Pull complete
+test	Initialize containers	2026-09-24T18:31:53.2124189Z ad29720ebbb9: Pull complete
+test	Initialize containers	2026-09-24T18:31:53.2802441Z 3a749597affc: Pull complete
+test	Initialize containers	2026-09-24T18:31:53.2863644Z 483fb6941c15: Pull complete
+test	Initialize containers	2026-09-24T18:31:53.2944050Z 359ae0fc975d: Pull complete
+test	Initialize containers	2026-09-24T18:31:56.3181092Z 56d4d190ef07: Pull complete
+test	Initialize containers	2026-09-24T18:31:56.3315182Z 74156cf9f063: Pull complete
+test	Initialize containers	2026-09-24T18:31:56.3400919Z f7c7d4dd80ba: Pull complete
+test	Initialize containers	2026-09-24T18:31:56.3478600Z 749acf6dc637: Pull complete
+test	Initialize containers	2026-09-24T18:31:56.3548648Z 4d848243a73e: Pull complete
+test	Initialize containers	2026-09-24T18:31:56.3645152Z 6ad4758748c1: Pull complete
+test	Initialize containers	2026-09-24T18:31:56.3677268Z Digest: sha256:a3b7f434b2dc57ce85a67e171163eb8ab1a1ebcb39d27484661f26b1dfbe30d6
+test	Initialize containers	2026-09-24T18:31:56.3689746Z Status: Downloaded newer image for postgres:16
+test	Initialize containers	2026-09-24T18:31:56.3701314Z docker.io/library/postgres:16
+test	Initialize containers	2026-09-24T18:31:56.3774046Z ##[command]/usr/bin/docker create --name 335e876098b6484893d7723c6081a909_postgres16_edda35 --label 0b856c --network github_network_e3a06b768f974704b26c9f17eac3fe62 --network-alias postgres -p 5432:5432 --health-cmd "pg_isready -U agent_relay -d agent_relay" --health-interval 5s --health-timeout 5s --health-retries 10 -e "POSTGRES_USER=agent_relay" -e "POSTGRES_PASSWORD=agent_relay" -e "POSTGRES_DB=agent_relay" -e GITHUB_ACTIONS=true -e CI=true postgres:16
+test	Initialize containers	2026-09-24T18:31:56.4003533Z ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Initialize containers	2026-09-24T18:31:56.4026663Z ##[command]/usr/bin/docker start ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Initialize containers	2026-09-24T18:31:56.5963152Z ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Initialize containers	2026-09-24T18:31:56.5976704Z ##[command]/usr/bin/docker ps --all --filter id=ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+test	Initialize containers	2026-09-24T18:31:56.6119389Z ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b Up Less than a second (health: starting)
+test	Initialize containers	2026-09-24T18:31:56.6141582Z ##[command]/usr/bin/docker port ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Initialize containers	2026-09-24T18:31:56.6282843Z 5432/tcp -> 0.0.0.0:5432
+test	Initialize containers	2026-09-24T18:31:56.6283834Z 5432/tcp -> [::]:5432
+test	Initialize containers	2026-09-24T18:31:56.6343402Z ##[endgroup]
+test	Initialize containers	2026-09-24T18:31:56.6352494Z ##[group]Waiting for all services to be ready
+test	Initialize containers	2026-09-24T18:31:56.6365163Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Initialize containers	2026-09-24T18:31:56.6496549Z starting
+test	Initialize containers	2026-09-24T18:31:56.6539751Z postgres service is starting, waiting 2 seconds before checking again.
+test	Initialize containers	2026-09-24T18:31:58.6537290Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Initialize containers	2026-09-24T18:31:58.6663831Z starting
+test	Initialize containers	2026-09-24T18:31:58.6676963Z postgres service is starting, waiting 3 seconds before checking again.
+test	Initialize containers	2026-09-24T18:32:02.3375725Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Initialize containers	2026-09-24T18:32:02.3501142Z healthy
+test	Initialize containers	2026-09-24T18:32:02.3517350Z postgres service is healthy.
+test	Initialize containers	2026-09-24T18:32:02.3518067Z ##[endgroup]
+test	Run actions/checkout@v4	﻿2026-09-24T18:32:02.3795152Z ##[group]Run actions/checkout@v4
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3795672Z with:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3795912Z   repository: cmmyers/agent-relay
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3798655Z   token: ***
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3798874Z   ssh-strict: true
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3799092Z   ssh-user: git
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3799312Z   persist-credentials: true
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3799570Z   clean: true
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3799792Z   sparse-checkout-cone-mode: true
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3800238Z   fetch-depth: 1
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3800456Z   fetch-tags: false
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3800671Z   show-progress: true
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3800886Z   lfs: false
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3801080Z   submodules: false
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3801289Z   set-safe-directory: true
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3801538Z   allow-unsafe-pr-checkout: false
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3801972Z env:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3802519Z   RELAY_DATABASE_URL: ***localhost:5432/agent_relay
+test	Run actions/checkout@v4	2026-09-24T18:32:02.3802832Z ##[endgroup]
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4825384Z Syncing repository: cmmyers/agent-relay
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4827239Z ##[group]Getting Git version info
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4827864Z Working directory is '/home/runner/work/agent-relay/agent-relay'
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4828532Z [command]/usr/bin/git version
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4864575Z git version 2.55.0
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4886006Z ##[endgroup]
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4900911Z Temporarily overriding HOME='/home/runner/work/_temp/6b80891b-4adc-4a26-88d2-8b9e77e71350' before making global git config changes
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4902204Z Adding repository directory to the temporary git global config as a safe directory
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4907010Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/agent-relay/agent-relay
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4952160Z Deleting the contents of '/home/runner/work/agent-relay/agent-relay'
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4956838Z ##[group]Initializing the repository
+test	Run actions/checkout@v4	2026-09-24T18:32:02.4960529Z [command]/usr/bin/git init /home/runner/work/agent-relay/agent-relay
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5033876Z hint: Using 'master' as the name for the initial branch. This default branch name
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5038274Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5039393Z hint: to use in all of your new repositories, which will suppress this warning,
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5041701Z hint: call:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5042062Z hint:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5042516Z hint: 	git config --global init.defaultBranch <name>
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5043008Z hint:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5043456Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5044287Z hint: 'development'. The just-created branch can be renamed via this command:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5044913Z hint:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5045226Z hint: 	git branch -m <name>
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5045582Z hint:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5046095Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5046996Z Initialized empty Git repository in /home/runner/work/agent-relay/agent-relay/.git/
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5050850Z [command]/usr/bin/git remote add origin https://github.com/cmmyers/agent-relay
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5101437Z ##[endgroup]
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5102392Z ##[group]Disabling automatic garbage collection
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5103138Z [command]/usr/bin/git config --local gc.auto 0
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5134835Z ##[endgroup]
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5135358Z ##[group]Setting up auth
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5142819Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5177111Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5520652Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5559378Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5822592Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Run actions/checkout@v4	2026-09-24T18:32:02.5864634Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Run actions/checkout@v4	2026-09-24T18:32:02.6106740Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test	Run actions/checkout@v4	2026-09-24T18:32:02.6149155Z ##[endgroup]
+test	Run actions/checkout@v4	2026-09-24T18:32:02.6150477Z ##[group]Fetching the repository
+test	Run actions/checkout@v4	2026-09-24T18:32:02.6159642Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe:refs/remotes/origin/main
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9716817Z From https://github.com/cmmyers/agent-relay
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9717614Z  * [new ref]         fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe -> origin/main
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9722647Z ##[endgroup]
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9723445Z ##[group]Determining the checkout info
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9725736Z ##[endgroup]
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9733470Z [command]/usr/bin/git sparse-checkout disable
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9786453Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9819864Z ##[group]Checking out the ref
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9824800Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9938149Z Switched to a new branch 'main'
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9943483Z branch 'main' set up to track 'origin/main'.
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9948075Z ##[endgroup]
+test	Run actions/checkout@v4	2026-09-24T18:32:02.9991629Z [command]/usr/bin/git log -1 --format=%H
+test	Run actions/checkout@v4	2026-09-24T18:32:03.0020181Z fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+test	Run astral-sh/setup-uv@v5	﻿2026-09-24T18:32:03.0258705Z ##[group]Run astral-sh/setup-uv@v5
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0258995Z with:
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0261950Z   github-token: ***
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0262175Z   enable-cache: auto
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0262459Z   cache-dependency-glob: **/uv.lock
+test	Run astral-sh/setup-uv@v5	**/requirements*.txt
+test	Run astral-sh/setup-uv@v5	
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0262810Z   prune-cache: true
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0263042Z   ignore-nothing-to-cache: false
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0263308Z   ignore-empty-workdir: false
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0263745Z env:
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0264208Z   RELAY_DATABASE_URL: ***localhost:5432/agent_relay
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.0264520Z ##[endgroup]
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.2055433Z (node:2663) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.2056191Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.4970354Z Downloading uv from "https://github.com/astral-sh/uv/releases/download/0.12.18/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:03.7635961Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/0b26f9a4-7a3b-47a9-8c3d-19177a3a3424 -f /home/runner/work/_temp/6875a182-3c65-4149-9031-f139077caf8b
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.1705058Z Added /home/runner/.local/bin to the path
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.1707801Z Added /opt/hostedtoolcache/uv/0.12.18/x86_64 to the path
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.1727117Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.1727558Z Successfully installed uv version 0.12.18
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.1728058Z Searching files using cache dependency glob: **/uv.lock,**/requirements*.txt
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.1932506Z /home/runner/work/agent-relay/agent-relay/uv.lock
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.1950440Z Found 1 files to hash.
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.2981373Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-unknown-c473fdeba3f4536d0a6ec4b7a1840f8dd274877e0126abababff3d509b4cc21b
+test	Run astral-sh/setup-uv@v5	2026-09-24T18:32:04.3967703Z No GitHub Actions cache found for key: setup-uv-1-x86_64-unknown-linux-gnu-unknown-c473fdeba3f4536d0a6ec4b7a1840f8dd274877e0126abababff3d509b4cc21b
+test	Install dependencies	﻿2026-09-24T18:32:04.4183117Z ##[group]Run uv sync --locked
+test	Install dependencies	2026-09-24T18:32:04.4183487Z ^[[36;1muv sync --locked^[[0m
+test	Install dependencies	2026-09-24T18:32:04.4371607Z shell: /usr/bin/bash -e {0}
+test	Install dependencies	2026-09-24T18:32:04.4371911Z env:
+test	Install dependencies	2026-09-24T18:32:04.4372533Z   RELAY_DATABASE_URL: ***localhost:5432/agent_relay
+test	Install dependencies	2026-09-24T18:32:04.4372930Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+test	Install dependencies	2026-09-24T18:32:04.4373250Z ##[endgroup]
+test	Install dependencies	2026-09-24T18:32:04.5579452Z Downloading cpython-3.11.16-linux-x86_64-gnu (download) (29.4MiB)
+test	Install dependencies	2026-09-24T18:32:05.3282969Z  Downloaded cpython-3.11.16-linux-x86_64-gnu (download)
+test	Install dependencies	2026-09-24T18:32:05.4588047Z Using CPython 3.11.16
+test	Install dependencies	2026-09-24T18:32:05.4588537Z Creating virtual environment at: .venv
+test	Install dependencies	2026-09-24T18:32:05.4621472Z Resolved 35 packages in 0.80ms
+test	Install dependencies	2026-09-24T18:32:05.4910482Z Downloading uvloop (3.6MiB)
+test	Install dependencies	2026-09-24T18:32:05.4912008Z Downloading sqlalchemy (3.2MiB)
+test	Install dependencies	2026-09-24T18:32:05.4914391Z Downloading pygments (1.2MiB)
+test	Install dependencies	2026-09-24T18:32:05.4915802Z Downloading pydantic-core (2.0MiB)
+test	Install dependencies	2026-09-24T18:32:05.4943539Z Downloading psycopg-binary (5.0MiB)
+test	Install dependencies	2026-09-24T18:32:05.5964112Z  Downloaded pydantic-core
+test	Install dependencies	2026-09-24T18:32:05.5990699Z  Downloaded pygments
+test	Install dependencies	2026-09-24T18:32:05.6161050Z  Downloaded uvloop
+test	Install dependencies	2026-09-24T18:32:05.6200757Z  Downloaded psycopg-binary
+test	Install dependencies	2026-09-24T18:32:05.6281076Z  Downloaded sqlalchemy
+test	Install dependencies	2026-09-24T18:32:05.6292063Z Prepared 32 packages in 165ms
+test	Install dependencies	2026-09-24T18:32:05.6523483Z Installed 32 packages in 22ms
+test	Install dependencies	2026-09-24T18:32:05.6524149Z  + annotated-doc==0.0.5
+test	Install dependencies	2026-09-24T18:32:05.6524908Z  + annotated-types==0.8.0
+test	Install dependencies	2026-09-24T18:32:05.6525513Z  + anyio==4.14.2
+test	Install dependencies	2026-09-24T18:32:05.6526011Z  + certifi==2026.7.22
+test	Install dependencies	2026-09-24T18:32:05.6526530Z  + click==8.5.0
+test	Install dependencies	2026-09-24T18:32:05.6527041Z  + fastapi==0.141.1
+test	Install dependencies	2026-09-24T18:32:05.6527539Z  + greenlet==3.5.5
+test	Install dependencies	2026-09-24T18:32:05.6528020Z  + h11==0.16.0
+test	Install dependencies	2026-09-24T18:32:05.6528486Z  + httpcore==1.0.9
+test	Install dependencies	2026-09-24T18:32:05.6528988Z  + httptools==0.8.0
+test	Install dependencies	2026-09-24T18:32:05.6529472Z  + httpx==0.28.1
+test	Install dependencies	2026-09-24T18:32:05.6530098Z  + idna==3.19
+test	Install dependencies	2026-09-24T18:32:05.6530605Z  + iniconfig==2.3.0
+test	Install dependencies	2026-09-24T18:32:05.6531136Z  + packaging==26.3
+test	Install dependencies	2026-09-24T18:32:05.6531632Z  + pluggy==1.6.0
+test	Install dependencies	2026-09-24T18:32:05.6532107Z  + psycopg==3.3.5
+test	Install dependencies	2026-09-24T18:32:05.6532624Z  + psycopg-binary==3.3.5
+test	Install dependencies	2026-09-24T18:32:05.6533153Z  + pydantic==2.13.5
+test	Install dependencies	2026-09-24T18:32:05.6533906Z  + pydantic-core==2.46.5
+test	Install dependencies	2026-09-24T18:32:05.6534419Z  + pydantic-settings==2.15.0
+test	Install dependencies	2026-09-24T18:32:05.6534929Z  + pygments==2.21.0
+test	Install dependencies	2026-09-24T18:32:05.6535400Z  + pytest==9.1.1
+test	Install dependencies	2026-09-24T18:32:05.6535897Z  + python-dotenv==1.2.3
+test	Install dependencies	2026-09-24T18:32:05.6536377Z  + pyyaml==6.0.3
+test	Install dependencies	2026-09-24T18:32:05.6536852Z  + sqlalchemy==2.0.52
+test	Install dependencies	2026-09-24T18:32:05.6537351Z  + starlette==1.6.0
+test	Install dependencies	2026-09-24T18:32:05.6538914Z  + typing-extensions==4.16.0
+test	Install dependencies	2026-09-24T18:32:05.6539481Z  + typing-inspection==0.4.4
+test	Install dependencies	2026-09-24T18:32:05.6540227Z  + uvicorn==0.52.4
+test	Install dependencies	2026-09-24T18:32:05.6540743Z  + uvloop==0.22.1
+test	Install dependencies	2026-09-24T18:32:05.6541130Z  + watchfiles==1.2.0
+test	Install dependencies	2026-09-24T18:32:05.6541496Z  + websockets==17.1
+test	Run tests against PostgreSQL	﻿2026-09-24T18:32:05.6635805Z ##[group]Run uv run pytest -q
+test	Run tests against PostgreSQL	2026-09-24T18:32:05.6636131Z ^[[36;1muv run pytest -q^[[0m
+test	Run tests against PostgreSQL	2026-09-24T18:32:05.6707315Z shell: /usr/bin/bash -e {0}
+test	Run tests against PostgreSQL	2026-09-24T18:32:05.6707595Z env:
+test	Run tests against PostgreSQL	2026-09-24T18:32:05.6708285Z   RELAY_DATABASE_URL: ***localhost:5432/agent_relay
+test	Run tests against PostgreSQL	2026-09-24T18:32:05.6708676Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+test	Run tests against PostgreSQL	2026-09-24T18:32:05.6709006Z ##[endgroup]
+test	Run tests against PostgreSQL	2026-09-24T18:32:08.7887920Z .....                                                                    [100%]
+test	Run tests against PostgreSQL	2026-09-24T18:32:08.7888648Z =============================== warnings summary ===============================
+test	Run tests against PostgreSQL	2026-09-24T18:32:08.7889257Z .venv/lib/python3.11/site-packages/fastapi/testclient.py:1
+test	Run tests against PostgreSQL	2026-09-24T18:32:08.7890945Z   /home/runner/work/agent-relay/agent-relay/.venv/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+test	Run tests against PostgreSQL	2026-09-24T18:32:08.7892446Z     from starlette.testclient import TestClient as TestClient  # noqa
+test	Run tests against PostgreSQL	2026-09-24T18:32:08.7892964Z 
+test	Run tests against PostgreSQL	2026-09-24T18:32:08.7893268Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+test	Run tests against PostgreSQL	2026-09-24T18:32:08.7893817Z 5 passed, 1 warning in 2.04s
+test	Post Run astral-sh/setup-uv@v5	﻿2026-09-24T18:32:08.9298772Z Post job cleanup.
+test	Post Run astral-sh/setup-uv@v5	2026-09-24T18:32:09.0551162Z Pruning cache...
+test	Post Run astral-sh/setup-uv@v5	2026-09-24T18:32:09.0563657Z (node:2811) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Post Run astral-sh/setup-uv@v5	2026-09-24T18:32:09.0564366Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Post Run astral-sh/setup-uv@v5	2026-09-24T18:32:09.1065362Z Saving cache path: /home/runner/work/_temp/setup-uv-cache
+test	Post Run astral-sh/setup-uv@v5	2026-09-24T18:32:09.1215458Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/agent-relay/agent-relay --files-from manifest.txt --use-compress-program zstdmt
+test	Post Run astral-sh/setup-uv@v5	2026-09-24T18:32:09.2918227Z (node:2811) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+test	Post Run astral-sh/setup-uv@v5	2026-09-24T18:32:09.4128186Z Sent 1705 of 1705 (100.0%), 0.0 MBs/sec
+test	Post Run astral-sh/setup-uv@v5	2026-09-24T18:32:09.5412984Z cache saved with the key: setup-uv-1-x86_64-unknown-linux-gnu-unknown-c473fdeba3f4536d0a6ec4b7a1840f8dd274877e0126abababff3d509b4cc21b
+test	Post Run actions/checkout@v4	﻿2026-09-24T18:32:09.5580319Z Post job cleanup.
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6444219Z [command]/usr/bin/git version
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6491031Z git version 2.55.0
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6524088Z Temporarily overriding HOME='/home/runner/work/_temp/98f7623b-fcb8-43e5-b37a-2a4ac938954a' before making global git config changes
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6525454Z Adding repository directory to the temporary git global config as a safe directory
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6528590Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/agent-relay/agent-relay
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6567691Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6604175Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6858398Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6886122Z http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6897357Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.6937851Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.7227919Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Post Run actions/checkout@v4	2026-09-24T18:32:09.7266431Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Stop containers	﻿2026-09-24T18:32:09.7681710Z Print service container logs: 335e876098b6484893d7723c6081a909_postgres16_edda35
+test	Stop containers	2026-09-24T18:32:09.7686258Z ##[command]/usr/bin/docker logs --details ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Stop containers	2026-09-24T18:32:09.7815457Z  initdb: warning: enabling "trust" authentication for local connections
+test	Stop containers	2026-09-24T18:32:09.7816812Z  initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+test	Stop containers	2026-09-24T18:32:09.7817688Z  The files belonging to this database system will be owned by user "postgres".
+test	Stop containers	2026-09-24T18:32:09.7818131Z  This user must also own the server process.
+test	Stop containers	2026-09-24T18:32:09.7818420Z  
+test	Stop containers	2026-09-24T18:32:09.7818709Z  The database cluster will be initialized with locale "en_US.utf8".
+test	Stop containers	2026-09-24T18:32:09.7819172Z  The default database encoding has accordingly been set to "UTF8".
+test	Stop containers	2026-09-24T18:32:09.7819601Z  The default text search configuration will be set to "english".
+test	Stop containers	2026-09-24T18:32:09.7819926Z  
+test	Stop containers	2026-09-24T18:32:09.7820530Z  Data page checksums are disabled.
+test	Stop containers	2026-09-24T18:32:09.7820914Z  
+test	Stop containers	2026-09-24T18:32:09.7821247Z  fixing permissions on existing directory /var/lib/postgresql/data ... ok
+test	Stop containers	2026-09-24T18:32:09.7821648Z  creating subdirectories ... ok
+test	Stop containers	2026-09-24T18:32:09.7821968Z  selecting dynamic shared memory implementation ... posix
+test	Stop containers	2026-09-24T18:32:09.7822337Z  selecting default max_connections ... 100
+test	Stop containers	2026-09-24T18:32:09.7822641Z  selecting default shared_buffers ... 128MB
+test	Stop containers	2026-09-24T18:32:09.7822937Z  selecting default time zone ... Etc/UTC
+test	Stop containers	2026-09-24T18:32:09.7823219Z  creating configuration files ... ok
+test	Stop containers	2026-09-24T18:32:09.7823503Z  running bootstrap script ... ok
+test	Stop containers	2026-09-24T18:32:09.7823806Z  performing post-bootstrap initialization ... ok
+test	Stop containers	2026-09-24T18:32:09.7824131Z  syncing data to disk ... ok
+test	Stop containers	2026-09-24T18:32:09.7824374Z  
+test	Stop containers	2026-09-24T18:32:09.7824550Z  
+test	Stop containers	2026-09-24T18:32:09.7824784Z  Success. You can now start the database server using:
+test	Stop containers	2026-09-24T18:32:09.7825082Z  
+test	Stop containers	2026-09-24T18:32:09.7825346Z      pg_ctl -D /var/lib/postgresql/data -l logfile start
+test	Stop containers	2026-09-24T18:32:09.7825652Z  
+test	Stop containers	2026-09-24T18:32:09.7826293Z  waiting for server to start....2026-09-24 18:31:57.205 UTC [48] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+test	Stop containers	2026-09-24T18:32:09.7827155Z  2026-09-24 18:31:57.206 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+test	Stop containers	2026-09-24T18:32:09.7827778Z  2026-09-24 18:31:57.208 UTC [51] LOG:  database system was shut down at 2026-09-24 18:31:57 UTC
+test	Stop containers	2026-09-24T18:32:09.7828276Z  2026-09-24 18:31:57.211 UTC [48] LOG:  database system is ready to accept connections
+test	Stop containers	2026-09-24T18:32:09.7828649Z   done
+test	Stop containers	2026-09-24T18:32:09.7828844Z  server started
+test	Stop containers	2026-09-24T18:32:09.7829056Z  CREATE DATABASE
+test	Stop containers	2026-09-24T18:32:09.7829261Z  
+test	Stop containers	2026-09-24T18:32:09.7829803Z  2026-09-24 18:31:57.511 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+test	Stop containers	2026-09-24T18:32:09.7830676Z  2026-09-24 18:31:57.511 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+test	Stop containers	2026-09-24T18:32:09.7831172Z  2026-09-24 18:31:57.511 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+test	Stop containers	2026-09-24T18:32:09.7831679Z  2026-09-24 18:31:57.512 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+test	Stop containers	2026-09-24T18:32:09.7832474Z  2026-09-24 18:31:57.514 UTC [64] LOG:  database system was shut down at 2026-09-24 18:31:57 UTC
+test	Stop containers	2026-09-24T18:32:09.7832970Z  2026-09-24 18:31:57.518 UTC [1] LOG:  database system is ready to accept connections
+test	Stop containers	2026-09-24T18:32:09.7833329Z  
+test	Stop containers	2026-09-24T18:32:09.7833653Z  /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+test	Stop containers	2026-09-24T18:32:09.7834051Z  
+test	Stop containers	2026-09-24T18:32:09.7834305Z  2026-09-24 18:31:57.389 UTC [48] LOG:  received fast shutdown request
+test	Stop containers	2026-09-24T18:32:09.7834818Z  waiting for server to shut down....2026-09-24 18:31:57.389 UTC [48] LOG:  aborting any active transactions
+test	Stop containers	2026-09-24T18:32:09.7835728Z  2026-09-24 18:31:57.390 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+test	Stop containers	2026-09-24T18:32:09.7836257Z  2026-09-24 18:31:57.392 UTC [49] LOG:  shutting down
+test	Stop containers	2026-09-24T18:32:09.7836704Z  2026-09-24 18:31:57.392 UTC [49] LOG:  checkpoint starting: shutdown immediate
+test	Stop containers	2026-09-24T18:32:09.7837785Z  2026-09-24 18:31:57.406 UTC [49] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.002 s, total=0.015 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4273 kB, estimate=4273 kB; lsn=0/191F0F0, redo lsn=0/191F0F0
+test	Stop containers	2026-09-24T18:32:09.7838793Z  2026-09-24 18:31:57.413 UTC [48] LOG:  database system is shut down
+test	Stop containers	2026-09-24T18:32:09.7839120Z   done
+test	Stop containers	2026-09-24T18:32:09.7839315Z  server stopped
+test	Stop containers	2026-09-24T18:32:09.7839517Z  
+test	Stop containers	2026-09-24T18:32:09.7839765Z  PostgreSQL init process complete; ready for start up.
+test	Stop containers	2026-09-24T18:32:09.7840676Z  
+test	Stop containers	2026-09-24T18:32:09.7856563Z Stop and remove container: 335e876098b6484893d7723c6081a909_postgres16_edda35
+test	Stop containers	2026-09-24T18:32:09.7861779Z ##[command]/usr/bin/docker rm --force ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Stop containers	2026-09-24T18:32:10.2763566Z ebfccbd867e9254210f4703ac2e19cc80dcf26fc8b66c93b90f0c70143e9a91b
+test	Stop containers	2026-09-24T18:32:10.2803532Z Remove container network: github_network_e3a06b768f974704b26c9f17eac3fe62
+test	Stop containers	2026-09-24T18:32:10.2808226Z ##[command]/usr/bin/docker network rm github_network_e3a06b768f974704b26c9f17eac3fe62
+test	Stop containers	2026-09-24T18:32:10.3814502Z github_network_e3a06b768f974704b26c9f17eac3fe62
+test	Complete job	﻿2026-09-24T18:32:10.3885384Z Cleaning up orphan processes
+test	Complete job	2026-09-24T18:32:10.4239523Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, astral-sh/setup-uv@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+build-and-deploy	Set up job	﻿2026-09-24T18:32:15.5658421Z Current runner version: '2.337.0'
+build-and-deploy	Set up job	2026-09-24T18:32:15.5693200Z ##[group]Runner Image Provisioner
+build-and-deploy	Set up job	2026-09-24T18:32:15.5694632Z Hosted Compute Agent
+build-and-deploy	Set up job	2026-09-24T18:32:15.5695725Z Version: 20260828.587
+build-and-deploy	Set up job	2026-09-24T18:32:15.5696776Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+build-and-deploy	Set up job	2026-09-24T18:32:15.5698033Z Build Date: 2026-08-28T16:44:25Z
+build-and-deploy	Set up job	2026-09-24T18:32:15.5699378Z Worker ID: {54181f9a-e8b2-4b47-912e-d7fccd6ab3a8}
+build-and-deploy	Set up job	2026-09-24T18:32:15.5700940Z Azure Region: eastus
+build-and-deploy	Set up job	2026-09-24T18:32:15.5701971Z ##[endgroup]
+build-and-deploy	Set up job	2026-09-24T18:32:15.5704340Z ##[group]Operating System
+build-and-deploy	Set up job	2026-09-24T18:32:15.5705451Z Ubuntu
+build-and-deploy	Set up job	2026-09-24T18:32:15.5706921Z 24.04.5
+build-and-deploy	Set up job	2026-09-24T18:32:15.5707854Z LTS
+build-and-deploy	Set up job	2026-09-24T18:32:15.5708744Z ##[endgroup]
+build-and-deploy	Set up job	2026-09-24T18:32:15.5709751Z ##[group]Runner Image
+build-and-deploy	Set up job	2026-09-24T18:32:15.5711084Z Image: ubuntu-24.04
+build-and-deploy	Set up job	2026-09-24T18:32:15.5712121Z Version: 20260920.314.1
+build-and-deploy	Set up job	2026-09-24T18:32:15.5713962Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+build-and-deploy	Set up job	2026-09-24T18:32:15.5717093Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+build-and-deploy	Set up job	2026-09-24T18:32:15.5718745Z ##[endgroup]
+build-and-deploy	Set up job	2026-09-24T18:32:15.5721109Z ##[group]GITHUB_TOKEN Permissions
+build-and-deploy	Set up job	2026-09-24T18:32:15.5724149Z Contents: read
+build-and-deploy	Set up job	2026-09-24T18:32:15.5725133Z Metadata: read
+build-and-deploy	Set up job	2026-09-24T18:32:15.5726010Z Packages: read
+build-and-deploy	Set up job	2026-09-24T18:32:15.5727026Z ##[endgroup]
+build-and-deploy	Set up job	2026-09-24T18:32:15.5730221Z Secret source: Actions
+build-and-deploy	Set up job	2026-09-24T18:32:15.5731891Z Cache mode: write
+build-and-deploy	Set up job	2026-09-24T18:32:15.5733251Z Prepare workflow directory
+build-and-deploy	Set up job	2026-09-24T18:32:15.6208951Z Prepare all required actions
+build-and-deploy	Set up job	2026-09-24T18:32:15.6279260Z Getting action download info
+build-and-deploy	Set up job	2026-09-24T18:32:15.8225476Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+build-and-deploy	Set up job	2026-09-24T18:32:15.9223117Z Download action repository 'helm/kind-action@v1' (SHA:ef37e7f390d99f746eb8b610417061a60e82a6cc)
+build-and-deploy	Set up job	2026-09-24T18:32:16.1379145Z Complete job name: build-and-deploy
+build-and-deploy	Run actions/checkout@v4	﻿2026-09-24T18:32:16.2172675Z ##[group]Run actions/checkout@v4
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2173665Z with:
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2174164Z   repository: cmmyers/agent-relay
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2177953Z   token: ***
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2178425Z   ssh-strict: true
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2178894Z   ssh-user: git
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2179360Z   persist-credentials: true
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2179868Z   clean: true
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2180537Z   sparse-checkout-cone-mode: true
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2181083Z   fetch-depth: 1
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2181540Z   fetch-tags: false
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2182010Z   show-progress: true
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2182485Z   lfs: false
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2182912Z   submodules: false
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2183374Z   set-safe-directory: true
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2183887Z   allow-unsafe-pr-checkout: false
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.2184676Z ##[endgroup]
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3216457Z Syncing repository: cmmyers/agent-relay
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3218444Z ##[group]Getting Git version info
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3219245Z Working directory is '/home/runner/work/agent-relay/agent-relay'
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3220730Z [command]/usr/bin/git version
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3345573Z git version 2.55.0
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3369294Z ##[endgroup]
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3386215Z Temporarily overriding HOME='/home/runner/work/_temp/c7857646-884b-4f01-a74c-0453504c36e9' before making global git config changes
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3387822Z Adding repository directory to the temporary git global config as a safe directory
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3392585Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/agent-relay/agent-relay
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3447374Z Deleting the contents of '/home/runner/work/agent-relay/agent-relay'
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3456904Z ##[group]Initializing the repository
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3458018Z [command]/usr/bin/git init /home/runner/work/agent-relay/agent-relay
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3601958Z hint: Using 'master' as the name for the initial branch. This default branch name
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3603989Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3606249Z hint: to use in all of your new repositories, which will suppress this warning,
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3607590Z hint: call:
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3608211Z hint:
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3608797Z hint: 	git config --global init.defaultBranch <name>
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3609493Z hint:
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3610421Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3611504Z hint: 'development'. The just-created branch can be renamed via this command:
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3612377Z hint:
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3612831Z hint: 	git branch -m <name>
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3613306Z hint:
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3613926Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3614974Z Initialized empty Git repository in /home/runner/work/agent-relay/agent-relay/.git/
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3633056Z [command]/usr/bin/git remote add origin https://github.com/cmmyers/agent-relay
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3672607Z ##[endgroup]
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3673469Z ##[group]Disabling automatic garbage collection
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3676779Z [command]/usr/bin/git config --local gc.auto 0
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3715408Z ##[endgroup]
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3716630Z ##[group]Setting up auth
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3722733Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.3758650Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.4161580Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.4199117Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.4423733Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.4460485Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.4686576Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.4726943Z ##[endgroup]
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.4736152Z ##[group]Fetching the repository
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.4737760Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe:refs/remotes/origin/main
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7373997Z From https://github.com/cmmyers/agent-relay
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7375211Z  * [new ref]         fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe -> origin/main
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7378547Z ##[endgroup]
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7379504Z ##[group]Determining the checkout info
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7382219Z ##[endgroup]
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7387887Z [command]/usr/bin/git sparse-checkout disable
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7447279Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7479651Z ##[group]Checking out the ref
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7484330Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7570574Z Switched to a new branch 'main'
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7575827Z branch 'main' set up to track 'origin/main'.
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7582510Z ##[endgroup]
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7625371Z [command]/usr/bin/git log -1 --format=%H
+build-and-deploy	Run actions/checkout@v4	2026-09-24T18:32:16.7653333Z fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Compute image tag	﻿2026-09-24T18:32:16.7906240Z ##[group]Run echo "IMAGE_TAG=agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe" >> "$GITHUB_ENV"
+build-and-deploy	Compute image tag	2026-09-24T18:32:16.7907733Z ^[[36;1mecho "IMAGE_TAG=agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe" >> "$GITHUB_ENV"^[[0m
+build-and-deploy	Compute image tag	2026-09-24T18:32:16.8213445Z shell: /usr/bin/bash -e {0}
+build-and-deploy	Compute image tag	2026-09-24T18:32:16.8214144Z ##[endgroup]
+build-and-deploy	Build image	﻿2026-09-24T18:32:16.8379605Z ##[group]Run docker build -t "$IMAGE_TAG" .
+build-and-deploy	Build image	2026-09-24T18:32:16.8380930Z ^[[36;1mdocker build -t "$IMAGE_TAG" .^[[0m
+build-and-deploy	Build image	2026-09-24T18:32:16.8442235Z shell: /usr/bin/bash -e {0}
+build-and-deploy	Build image	2026-09-24T18:32:16.8442808Z env:
+build-and-deploy	Build image	2026-09-24T18:32:16.8443442Z   IMAGE_TAG: agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Build image	2026-09-24T18:32:16.8444201Z ##[endgroup]
+build-and-deploy	Build image	2026-09-24T18:32:17.5126018Z #0 building with "default" instance using docker driver
+build-and-deploy	Build image	2026-09-24T18:32:17.5127553Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.5129149Z #1 [internal] load build definition from Dockerfile
+build-and-deploy	Build image	2026-09-24T18:32:17.5131075Z #1 transferring dockerfile: 368B 0.1s done
+build-and-deploy	Build image	2026-09-24T18:32:17.7172614Z #1 DONE 0.1s
+build-and-deploy	Build image	2026-09-24T18:32:17.7173258Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.7173788Z #2 [auth] library/python:pull token for registry-1.docker.io
+build-and-deploy	Build image	2026-09-24T18:32:17.7174815Z #2 DONE 0.0s
+build-and-deploy	Build image	2026-09-24T18:32:17.7175204Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.7175681Z #3 [internal] load metadata for ghcr.io/astral-sh/uv:latest
+build-and-deploy	Build image	2026-09-24T18:32:17.7785995Z #3 DONE 0.3s
+build-and-deploy	Build image	2026-09-24T18:32:17.7786693Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.7787426Z #4 [internal] load metadata for docker.io/library/python:3.11-slim
+build-and-deploy	Build image	2026-09-24T18:32:17.8789613Z #4 DONE 0.3s
+build-and-deploy	Build image	2026-09-24T18:32:17.8790773Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.8791271Z #5 [internal] load .dockerignore
+build-and-deploy	Build image	2026-09-24T18:32:17.8792441Z #5 transferring context: 134B done
+build-and-deploy	Build image	2026-09-24T18:32:17.8793464Z #5 DONE 0.0s
+build-and-deploy	Build image	2026-09-24T18:32:17.8793918Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.8794304Z #6 [internal] load build context
+build-and-deploy	Build image	2026-09-24T18:32:17.8795324Z #6 DONE 0.0s
+build-and-deploy	Build image	2026-09-24T18:32:17.8795753Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.8797046Z #7 FROM ghcr.io/astral-sh/uv:latest@sha256:3adc3706091ce7c2fe595e669628caedd6d951551b92b258b7e7dbe06d9440bc
+build-and-deploy	Build image	2026-09-24T18:32:17.8800480Z #7 resolve ghcr.io/astral-sh/uv:latest@sha256:3adc3706091ce7c2fe595e669628caedd6d951551b92b258b7e7dbe06d9440bc done
+build-and-deploy	Build image	2026-09-24T18:32:17.9846153Z #7 ...
+build-and-deploy	Build image	2026-09-24T18:32:17.9847605Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.9848863Z #6 [internal] load build context
+build-and-deploy	Build image	2026-09-24T18:32:17.9851454Z #6 transferring context: 297.07kB done
+build-and-deploy	Build image	2026-09-24T18:32:17.9854676Z #6 DONE 0.0s
+build-and-deploy	Build image	2026-09-24T18:32:17.9856222Z 
+build-and-deploy	Build image	2026-09-24T18:32:17.9860249Z #7 FROM ghcr.io/astral-sh/uv:latest@sha256:3adc3706091ce7c2fe595e669628caedd6d951551b92b258b7e7dbe06d9440bc
+build-and-deploy	Build image	2026-09-24T18:32:17.9865647Z #7 sha256:34532673531cdce6019c0919595b2b7f9207ed3a46dabc606d563c4c569cf82a 669B / 669B done
+build-and-deploy	Build image	2026-09-24T18:32:17.9874907Z #7 sha256:6b1cc27057e9fb2060e7017c2623ed3f7e02a71476ef89753d859982cd286f4e 1.30kB / 1.30kB done
+build-and-deploy	Build image	2026-09-24T18:32:17.9880635Z #7 sha256:e54b47c33f1ed6d31b45678f8655e0131c483140eaa7158ec31fcd2d49337d6c 8.39MB / 23.54MB 0.1s
+build-and-deploy	Build image	2026-09-24T18:32:17.9886784Z #7 sha256:4e380bf91c1c08c4f2a7dac6e02c7765ceb7072ca6fd26e13bae12b07e022767 98B / 98B 0.0s done
+build-and-deploy	Build image	2026-09-24T18:32:17.9894183Z #7 sha256:3adc3706091ce7c2fe595e669628caedd6d951551b92b258b7e7dbe06d9440bc 2.20kB / 2.20kB done
+build-and-deploy	Build image	2026-09-24T18:32:18.1405367Z #7 sha256:e54b47c33f1ed6d31b45678f8655e0131c483140eaa7158ec31fcd2d49337d6c 23.54MB / 23.54MB 0.1s done
+build-and-deploy	Build image	2026-09-24T18:32:18.1407973Z #7 extracting sha256:e54b47c33f1ed6d31b45678f8655e0131c483140eaa7158ec31fcd2d49337d6c 0.1s
+build-and-deploy	Build image	2026-09-24T18:32:18.4647551Z #7 extracting sha256:e54b47c33f1ed6d31b45678f8655e0131c483140eaa7158ec31fcd2d49337d6c 0.4s done
+build-and-deploy	Build image	2026-09-24T18:32:18.4649369Z #7 extracting sha256:4e380bf91c1c08c4f2a7dac6e02c7765ceb7072ca6fd26e13bae12b07e022767 done
+build-and-deploy	Build image	2026-09-24T18:32:18.5646690Z #7 DONE 0.6s
+build-and-deploy	Build image	2026-09-24T18:32:18.5647526Z 
+build-and-deploy	Build image	2026-09-24T18:32:18.5648549Z #8 [stage-0 1/7] FROM docker.io/library/python:3.11-slim@sha256:da047cb8f9d1d98e5c070f5300ba9f7274e33b8fc0e5be5ed88740aed1b95ba9
+build-and-deploy	Build image	2026-09-24T18:32:18.5651124Z #8 resolve docker.io/library/python:3.11-slim@sha256:da047cb8f9d1d98e5c070f5300ba9f7274e33b8fc0e5be5ed88740aed1b95ba9 done
+build-and-deploy	Build image	2026-09-24T18:32:18.5653154Z #8 sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 29.83MB / 29.83MB 0.1s done
+build-and-deploy	Build image	2026-09-24T18:32:18.5654903Z #8 sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8 1.29MB / 1.29MB 0.1s done
+build-and-deploy	Build image	2026-09-24T18:32:18.5656838Z #8 sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 14.45MB / 14.45MB 0.2s done
+build-and-deploy	Build image	2026-09-24T18:32:18.5658991Z #8 sha256:da047cb8f9d1d98e5c070f5300ba9f7274e33b8fc0e5be5ed88740aed1b95ba9 10.37kB / 10.37kB done
+build-and-deploy	Build image	2026-09-24T18:32:18.5661067Z #8 sha256:174bec68e0451bffabbb08c7d5d21c6b253f772d81d52b9558af97bb3159b761 1.75kB / 1.75kB done
+build-and-deploy	Build image	2026-09-24T18:32:18.5662703Z #8 sha256:274d131132dbdc6058ed77088525d77adaf0749a6d99f2cf7d42feb9a10737c8 5.49kB / 5.49kB done
+build-and-deploy	Build image	2026-09-24T18:32:18.5664230Z #8 extracting sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 0.5s
+build-and-deploy	Build image	2026-09-24T18:32:18.5666160Z #8 sha256:0526d5e29bf341cb1941d46a6d4ab64fcde4fca3dc3adccfb4dbf5728b88b61e 249B / 249B 0.1s done
+build-and-deploy	Build image	2026-09-24T18:32:19.1772941Z #8 extracting sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8 1.1s done
+build-and-deploy	Build image	2026-09-24T18:32:19.1773882Z #8 extracting sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8
+build-and-deploy	Build image	2026-09-24T18:32:19.4562209Z #8 extracting sha256:41e7217c2e506d048f89ca0c5cfef848c05ef990900627c19f99938c4aae57f8 0.1s done
+build-and-deploy	Build image	2026-09-24T18:32:19.4563725Z #8 extracting sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 0.1s
+build-and-deploy	Build image	2026-09-24T18:32:20.1178182Z #8 extracting sha256:58abdd9670ca8c69d03432ce188995dee67f0979357caf83866fe1ef2ec37138 0.7s done
+build-and-deploy	Build image	2026-09-24T18:32:20.1179870Z #8 extracting sha256:0526d5e29bf341cb1941d46a6d4ab64fcde4fca3dc3adccfb4dbf5728b88b61e
+build-and-deploy	Build image	2026-09-24T18:32:20.2281255Z #8 extracting sha256:0526d5e29bf341cb1941d46a6d4ab64fcde4fca3dc3adccfb4dbf5728b88b61e done
+build-and-deploy	Build image	2026-09-24T18:32:20.2282225Z #8 DONE 2.3s
+build-and-deploy	Build image	2026-09-24T18:32:20.2282446Z 
+build-and-deploy	Build image	2026-09-24T18:32:20.2282874Z #9 [stage-0 2/7] COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+build-and-deploy	Build image	2026-09-24T18:32:20.2283565Z #9 DONE 0.1s
+build-and-deploy	Build image	2026-09-24T18:32:20.2283770Z 
+build-and-deploy	Build image	2026-09-24T18:32:20.2283949Z #10 [stage-0 3/7] WORKDIR /app
+build-and-deploy	Build image	2026-09-24T18:32:20.2284357Z #10 DONE 0.0s
+build-and-deploy	Build image	2026-09-24T18:32:20.2284582Z 
+build-and-deploy	Build image	2026-09-24T18:32:20.2284848Z #11 [stage-0 4/7] COPY pyproject.toml uv.lock ./
+build-and-deploy	Build image	2026-09-24T18:32:20.2285377Z #11 DONE 0.0s
+build-and-deploy	Build image	2026-09-24T18:32:20.3800536Z 
+build-and-deploy	Build image	2026-09-24T18:32:20.3801421Z #12 [stage-0 5/7] RUN uv sync --locked --no-install-project --no-dev
+build-and-deploy	Build image	2026-09-24T18:32:20.4999633Z #12 0.271 Using CPython 3.11.16 interpreter at: /usr/local/bin/python3
+build-and-deploy	Build image	2026-09-24T18:32:20.5000893Z #12 0.271 Creating virtual environment at: .venv
+build-and-deploy	Build image	2026-09-24T18:32:20.6536630Z #12 0.276 Resolved 35 packages in 0.83ms
+build-and-deploy	Build image	2026-09-24T18:32:20.6538779Z #12 0.353 Downloading pydantic-core (2.0MiB)
+build-and-deploy	Build image	2026-09-24T18:32:20.6539667Z #12 0.360 Downloading uvloop (3.6MiB)
+build-and-deploy	Build image	2026-09-24T18:32:20.6559135Z #12 0.360 Downloading sqlalchemy (3.2MiB)
+build-and-deploy	Build image	2026-09-24T18:32:20.6560269Z #12 0.360 Downloading psycopg-binary (5.0MiB)
+build-and-deploy	Build image	2026-09-24T18:32:20.7793108Z #12 0.423  Downloaded pydantic-core
+build-and-deploy	Build image	2026-09-24T18:32:20.7796635Z #12 0.444  Downloaded uvloop
+build-and-deploy	Build image	2026-09-24T18:32:20.7811171Z #12 0.459  Downloaded psycopg-binary
+build-and-deploy	Build image	2026-09-24T18:32:20.7812777Z #12 0.463  Downloaded sqlalchemy
+build-and-deploy	Build image	2026-09-24T18:32:20.7813680Z #12 0.463 Prepared 24 packages in 186ms
+build-and-deploy	Build image	2026-09-24T18:32:20.7832832Z #12 0.485 Installed 24 packages in 20ms
+build-and-deploy	Build image	2026-09-24T18:32:20.7833729Z #12 0.485  + annotated-doc==0.0.5
+build-and-deploy	Build image	2026-09-24T18:32:20.7834452Z #12 0.485  + annotated-types==0.8.0
+build-and-deploy	Build image	2026-09-24T18:32:20.7835101Z #12 0.485  + anyio==4.14.2
+build-and-deploy	Build image	2026-09-24T18:32:20.7836076Z #12 0.485  + click==8.5.0
+build-and-deploy	Build image	2026-09-24T18:32:20.7836693Z #12 0.485  + fastapi==0.141.1
+build-and-deploy	Build image	2026-09-24T18:32:20.7837892Z #12 0.485  + greenlet==3.5.5
+build-and-deploy	Build image	2026-09-24T18:32:20.7839214Z #12 0.485  + h11==0.16.0
+build-and-deploy	Build image	2026-09-24T18:32:20.7839653Z #12 0.485  + httptools==0.8.0
+build-and-deploy	Build image	2026-09-24T18:32:20.7840494Z #12 0.485  + idna==3.19
+build-and-deploy	Build image	2026-09-24T18:32:20.7841163Z #12 0.485  + psycopg==3.3.5
+build-and-deploy	Build image	2026-09-24T18:32:20.7841581Z #12 0.485  + psycopg-binary==3.3.5
+build-and-deploy	Build image	2026-09-24T18:32:20.7842010Z #12 0.485  + pydantic==2.13.5
+build-and-deploy	Build image	2026-09-24T18:32:20.7842415Z #12 0.485  + pydantic-core==2.46.5
+build-and-deploy	Build image	2026-09-24T18:32:20.7842852Z #12 0.485  + pydantic-settings==2.15.0
+build-and-deploy	Build image	2026-09-24T18:32:20.7843456Z #12 0.485  + python-dotenv==1.2.3
+build-and-deploy	Build image	2026-09-24T18:32:20.7843763Z #12 0.485  + pyyaml==6.0.3
+build-and-deploy	Build image	2026-09-24T18:32:20.7844034Z #12 0.485  + sqlalchemy==2.0.52
+build-and-deploy	Build image	2026-09-24T18:32:20.7844286Z #12 0.485  + starlette==1.6.0
+build-and-deploy	Build image	2026-09-24T18:32:20.7844823Z #12 0.485  + typing-extensions==4.16.0
+build-and-deploy	Build image	2026-09-24T18:32:20.7845602Z #12 0.486  + typing-inspection==0.4.4
+build-and-deploy	Build image	2026-09-24T18:32:20.7846028Z #12 0.486  + uvicorn==0.52.4
+build-and-deploy	Build image	2026-09-24T18:32:20.7846422Z #12 0.486  + uvloop==0.22.1
+build-and-deploy	Build image	2026-09-24T18:32:20.7846799Z #12 0.486  + watchfiles==1.2.0
+build-and-deploy	Build image	2026-09-24T18:32:20.7847216Z #12 0.486  + websockets==17.1
+build-and-deploy	Build image	2026-09-24T18:32:20.7847605Z #12 DONE 0.5s
+build-and-deploy	Build image	2026-09-24T18:32:20.9503857Z 
+build-and-deploy	Build image	2026-09-24T18:32:20.9504554Z #13 [stage-0 6/7] COPY . .
+build-and-deploy	Build image	2026-09-24T18:32:20.9505074Z #13 DONE 0.0s
+build-and-deploy	Build image	2026-09-24T18:32:20.9505295Z 
+build-and-deploy	Build image	2026-09-24T18:32:20.9505484Z #14 [stage-0 7/7] RUN uv sync --locked --no-dev
+build-and-deploy	Build image	2026-09-24T18:32:21.0445333Z #14 0.245 Resolved 35 packages in 0.91ms
+build-and-deploy	Build image	2026-09-24T18:32:21.2054617Z #14 0.247 Checked 24 packages in 0.54ms
+build-and-deploy	Build image	2026-09-24T18:32:21.2055686Z #14 DONE 0.3s
+build-and-deploy	Build image	2026-09-24T18:32:21.2056740Z 
+build-and-deploy	Build image	2026-09-24T18:32:21.2060686Z #15 exporting to image
+build-and-deploy	Build image	2026-09-24T18:32:21.2070547Z #15 exporting layers
+build-and-deploy	Build image	2026-09-24T18:32:22.0165524Z #15 exporting layers 1.0s done
+build-and-deploy	Build image	2026-09-24T18:32:22.0350331Z #15 writing image sha256:25c743c59694ec735736f9b9c53a43376938cbffe8a3478ebff7cc897ada083b done
+build-and-deploy	Build image	2026-09-24T18:32:22.0351467Z #15 naming to docker.io/library/agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe done
+build-and-deploy	Build image	2026-09-24T18:32:22.0352131Z #15 DONE 1.0s
+build-and-deploy	Create kind cluster	﻿2026-09-24T18:32:22.0532355Z ##[group]Run helm/kind-action@v1
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0532659Z with:
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0532873Z   cluster_name: agent-relay-ci
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0533114Z   wait: 60s
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0533305Z   version: v0.31.0
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0533506Z   verbosity: 0
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0533709Z   kubectl_version: v1.35.0
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0533942Z   registry: false
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0534157Z   registry_image: registry:2
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0534401Z   registry_name: kind-registry
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0534642Z   registry_port: 5000
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0534873Z   registry_enable_delete: false
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0535117Z   install_only: false
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0535330Z   ignore_failed_clean: false
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0535559Z   cloud_provider: false
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0535785Z env:
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0536054Z   IMAGE_TAG: agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0536401Z ##[endgroup]
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0896006Z Installing kind...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.0910339Z /opt/hostedtoolcache/kind/v0.31.0/amd64/kind/bin ~/work/agent-relay/agent-relay
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.2850545Z kind-linux-amd64: OK
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.2887436Z ~/work/agent-relay/agent-relay
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.2887945Z Adding kind directory to PATH...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.2888376Z Installing kubectl...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.2902432Z /opt/hostedtoolcache/kind/v0.31.0/amd64/kubectl/bin ~/work/agent-relay/agent-relay
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.6665473Z kubectl: OK
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.6679141Z ~/work/agent-relay/agent-relay
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.6679656Z Adding kubectl directory to PATH...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.6702487Z kind v0.31.0 go1.25.5 linux/amd64
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.7055355Z Client Version: v1.35.0
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.7055855Z Kustomize Version: v5.7.1
+build-and-deploy	Create kind cluster	2026-09-24T18:32:22.7070183Z Creating kind cluster...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:23.0507477Z Creating cluster "agent-relay-ci" ...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:23.0508249Z  • Ensuring node image (kindest/node:v1.35.0) 🖼  ...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:31.6301548Z  ✓ Ensuring node image (kindest/node:v1.35.0) 🖼
+build-and-deploy	Create kind cluster	2026-09-24T18:32:31.6302335Z  • Preparing nodes 📦   ...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:33.4008508Z  ✓ Preparing nodes 📦 
+build-and-deploy	Create kind cluster	2026-09-24T18:32:33.4293348Z  • Writing configuration 📜  ...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:33.6164728Z  ✓ Writing configuration 📜
+build-and-deploy	Create kind cluster	2026-09-24T18:32:33.6165266Z  • Starting control-plane 🕹️  ...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:41.5982627Z  ✓ Starting control-plane 🕹️
+build-and-deploy	Create kind cluster	2026-09-24T18:32:41.5983225Z  • Installing CNI 🔌  ...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:41.8730279Z  ✓ Installing CNI 🔌
+build-and-deploy	Create kind cluster	2026-09-24T18:32:41.8731369Z  • Installing StorageClass 💾  ...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:42.2046879Z  ✓ Installing StorageClass 💾
+build-and-deploy	Create kind cluster	2026-09-24T18:32:42.2313881Z  • Waiting ≤ 1m0s for control-plane = Ready ⏳  ...
+build-and-deploy	Create kind cluster	2026-09-24T18:32:59.2963873Z  ✓ Waiting ≤ 1m0s for control-plane = Ready ⏳
+build-and-deploy	Create kind cluster	2026-09-24T18:32:59.2964850Z  • Ready after 17s 💚
+build-and-deploy	Create kind cluster	2026-09-24T18:32:59.4355597Z Set kubectl context to "kind-agent-relay-ci"
+build-and-deploy	Create kind cluster	2026-09-24T18:32:59.4356184Z You can now use your cluster with:
+build-and-deploy	Create kind cluster	2026-09-24T18:32:59.4356451Z 
+build-and-deploy	Create kind cluster	2026-09-24T18:32:59.4356670Z kubectl cluster-info --context kind-agent-relay-ci
+build-and-deploy	Create kind cluster	2026-09-24T18:32:59.4357090Z 
+build-and-deploy	Create kind cluster	2026-09-24T18:32:59.4357718Z Have a nice day! 👋
+build-and-deploy	Load image into kind	﻿2026-09-24T18:32:59.4446700Z ##[group]Run kind load docker-image "$IMAGE_TAG" --name agent-relay-ci
+build-and-deploy	Load image into kind	2026-09-24T18:32:59.4447252Z ^[[36;1mkind load docker-image "$IMAGE_TAG" --name agent-relay-ci^[[0m
+build-and-deploy	Load image into kind	2026-09-24T18:32:59.4515332Z shell: /usr/bin/bash -e {0}
+build-and-deploy	Load image into kind	2026-09-24T18:32:59.4515599Z env:
+build-and-deploy	Load image into kind	2026-09-24T18:32:59.4515895Z   IMAGE_TAG: agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Load image into kind	2026-09-24T18:32:59.4516246Z ##[endgroup]
+build-and-deploy	Load image into kind	2026-09-24T18:32:59.6626290Z Image: "agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe" with ID "sha256:25c743c59694ec735736f9b9c53a43376938cbffe8a3478ebff7cc897ada083b" not yet present on node "agent-relay-ci-control-plane", loading...
+build-and-deploy	Deploy PostgreSQL	﻿2026-09-24T18:33:06.3926950Z ##[group]Run kubectl apply -f k8s/postgres.yaml
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.3927356Z ^[[36;1mkubectl apply -f k8s/postgres.yaml^[[0m
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.4003293Z shell: /usr/bin/bash -e {0}
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.4003680Z env:
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.4003971Z   IMAGE_TAG: agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.4004334Z ##[endgroup]
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.5930860Z secret/postgres-credentials created
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.6023058Z persistentvolumeclaim/postgres-pvc created
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.6070792Z deployment.apps/postgres created
+build-and-deploy	Deploy PostgreSQL	2026-09-24T18:33:06.6183795Z service/postgres created
+build-and-deploy	Wait for PostgreSQL	﻿2026-09-24T18:33:06.6285263Z ##[group]Run kubectl wait --for=condition=ready pod -l app=postgres --timeout=120s
+build-and-deploy	Wait for PostgreSQL	2026-09-24T18:33:06.6286378Z ^[[36;1mkubectl wait --for=condition=ready pod -l app=postgres --timeout=120s^[[0m
+build-and-deploy	Wait for PostgreSQL	2026-09-24T18:33:06.6382808Z shell: /usr/bin/bash -e {0}
+build-and-deploy	Wait for PostgreSQL	2026-09-24T18:33:06.6383256Z env:
+build-and-deploy	Wait for PostgreSQL	2026-09-24T18:33:06.6383773Z   IMAGE_TAG: agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Wait for PostgreSQL	2026-09-24T18:33:06.6384422Z ##[endgroup]
+build-and-deploy	Wait for PostgreSQL	2026-09-24T18:33:20.7594767Z pod/postgres-c7b58f89-8lj7r condition met
+build-and-deploy	Deploy agent-relay at this commit's image	﻿2026-09-24T18:33:20.7682803Z ##[group]Run sed "s|image: agent-relay:local|image: $IMAGE_TAG|" k8s/agent-relay.yaml | kubectl apply -f -
+build-and-deploy	Deploy agent-relay at this commit's image	2026-09-24T18:33:20.7684079Z ^[[36;1msed "s|image: agent-relay:local|image: $IMAGE_TAG|" k8s/agent-relay.yaml | kubectl apply -f -^[[0m
+build-and-deploy	Deploy agent-relay at this commit's image	2026-09-24T18:33:20.7750635Z shell: /usr/bin/bash -e {0}
+build-and-deploy	Deploy agent-relay at this commit's image	2026-09-24T18:33:20.7750890Z env:
+build-and-deploy	Deploy agent-relay at this commit's image	2026-09-24T18:33:20.7751175Z   IMAGE_TAG: agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Deploy agent-relay at this commit's image	2026-09-24T18:33:20.7751528Z ##[endgroup]
+build-and-deploy	Deploy agent-relay at this commit's image	2026-09-24T18:33:20.8981028Z deployment.apps/agent-relay created
+build-and-deploy	Deploy agent-relay at this commit's image	2026-09-24T18:33:20.9098209Z service/agent-relay created
+build-and-deploy	Confirm the rollout completes	﻿2026-09-24T18:33:20.9191151Z ##[group]Run kubectl rollout status deployment/agent-relay --timeout=120s
+build-and-deploy	Confirm the rollout completes	2026-09-24T18:33:20.9192510Z ^[[36;1mkubectl rollout status deployment/agent-relay --timeout=120s^[[0m
+build-and-deploy	Confirm the rollout completes	2026-09-24T18:33:20.9304276Z shell: /usr/bin/bash -e {0}
+build-and-deploy	Confirm the rollout completes	2026-09-24T18:33:20.9304764Z env:
+build-and-deploy	Confirm the rollout completes	2026-09-24T18:33:20.9305239Z   IMAGE_TAG: agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Confirm the rollout completes	2026-09-24T18:33:20.9305828Z ##[endgroup]
+build-and-deploy	Confirm the rollout completes	2026-09-24T18:33:21.0164627Z Waiting for deployment "agent-relay" rollout to finish: 0 of 2 updated replicas are available...
+build-and-deploy	Confirm the rollout completes	2026-09-24T18:33:27.7580324Z Waiting for deployment "agent-relay" rollout to finish: 1 of 2 updated replicas are available...
+build-and-deploy	Confirm the rollout completes	2026-09-24T18:33:31.7757102Z deployment "agent-relay" successfully rolled out
+build-and-deploy	Smoke test the deployed app	﻿2026-09-24T18:33:31.7823996Z ##[group]Run kubectl port-forward svc/agent-relay 8000:8000 &
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7824814Z ^[[36;1mkubectl port-forward svc/agent-relay 8000:8000 &^[[0m
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7825417Z ^[[36;1mfor i in $(seq 1 15); do^[[0m
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7825969Z ^[[36;1m  curl -sf http://127.0.0.1:8000/ready && break^[[0m
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7826529Z ^[[36;1m  sleep 2^[[0m
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7827001Z ^[[36;1mdone^[[0m
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7827418Z ^[[36;1mcurl -sf http://127.0.0.1:8000/ready^[[0m
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7828088Z ^[[36;1mcurl -sf http://127.0.0.1:8000/ | grep -q "Agent Relay v2"^[[0m
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7911328Z shell: /usr/bin/bash -e {0}
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7911760Z env:
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7912263Z   IMAGE_TAG: agent-relay:fb95bf4767c4f6fdfa8ce663fd2d0b4b65e166fe
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.7912892Z ##[endgroup]
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.8643608Z Forwarding from 127.0.0.1:8000 -> 8000
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:31.8648696Z Forwarding from [::1]:8000 -> 8000
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:33.8174734Z Handling connection for 8000
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:33.8289551Z {"status":"ready"}Handling connection for 8000
+build-and-deploy	Smoke test the deployed app	2026-09-24T18:33:33.8392607Z {"status":"ready"}Handling connection for 8000
+build-and-deploy	Post Create kind cluster	﻿2026-09-24T18:33:38.8549772Z Post job cleanup.
+build-and-deploy	Post Create kind cluster	2026-09-24T18:33:38.8938761Z Error response from daemon: No such container: kind-registry
+build-and-deploy	Post Create kind cluster	2026-09-24T18:33:38.9084937Z Deleting cluster "agent-relay-ci" ...
+build-and-deploy	Post Create kind cluster	2026-09-24T18:33:41.3134188Z Deleted nodes: ["agent-relay-ci-control-plane"]
+build-and-deploy	Post Run actions/checkout@v4	﻿2026-09-24T18:33:41.3250412Z Post job cleanup.
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4172445Z [command]/usr/bin/git version
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4215791Z git version 2.55.0
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4255369Z Temporarily overriding HOME='/home/runner/work/_temp/fe612c6e-5023-47c4-b404-ca5adf5a02f9' before making global git config changes
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4257006Z Adding repository directory to the temporary git global config as a safe directory
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4260877Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/agent-relay/agent-relay
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4301493Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4337783Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4584769Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4613682Z http.https://github.com/.extraheader
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4625408Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4671241Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.4968813Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build-and-deploy	Post Run actions/checkout@v4	2026-09-24T18:33:41.5009412Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build-and-deploy	Complete job	﻿2026-09-24T18:33:41.5407926Z Cleaning up orphan processes
+build-and-deploy	Complete job	2026-09-24T18:33:41.5863871Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,60 @@
+time="2026-09-24T11:43:12-07:00" level=warning msg="buildx Docker CLI plugin not found: falling back to the classic builder. BuildKit-only build features (multi-arch, secrets, ssh, additional contexts, ...) will not be available"
+ Image agent-relay-agent-relay Building 
+ Image agent-relay-agent-relay Building 
+Sending build context to Docker daemon  524.5kBSending build context to Docker daemon  638.8kB
+Step 1/11 : FROM python:3.11-slim
+ ---> da047cb8f9d1
+Step 2/11 : COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+ ---> Using cache
+ ---> 80d40e2e5ec1
+Step 3/11 : WORKDIR /app
+ ---> Using cache
+ ---> 708522f15538
+Step 4/11 : COPY pyproject.toml uv.lock ./
+ ---> Using cache
+ ---> 938f4364a3de
+Step 5/11 : RUN uv sync --locked --no-install-project --no-dev
+ ---> Using cache
+ ---> e99c37537938
+Step 6/11 : COPY . .
+ ---> 6151968bf04c
+Step 7/11 : RUN uv sync --locked --no-dev
+ ---> Running in b480350a844c
+[91mResolved 35 packages in 2ms
+[0m[91mChecked 24 packages in 1ms
+[0m ---> Removed intermediate container b480350a844c
+ ---> ead5a7218b7a
+Step 8/11 : ENV PATH="/app/.venv/bin:$PATH"
+ ---> Running in 0ba500077fed
+ ---> Removed intermediate container 0ba500077fed
+ ---> abd40200e878
+Step 9/11 : EXPOSE 8000
+ ---> Running in 040fef9905e3
+ ---> Removed intermediate container 040fef9905e3
+ ---> ce0a2c535f43
+Step 10/11 : CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+ ---> Running in 1f3817f612a1
+ ---> Removed intermediate container 1f3817f612a1
+ ---> 4cfdcbd6d91a
+Step 11/11 : LABEL com.docker.compose.image.builder=classic
+ ---> Running in 56e6963ba17d
+ ---> Removed intermediate container 56e6963ba17d
+ ---> f8b5460bda20
+Successfully built f8b5460bda20
+Successfully tagged agent-relay-agent-relay:latest
+ Image agent-relay-agent-relay Built 
+ Image agent-relay-agent-relay Built 
+ Network agent-relay_default Creating 
+ Network agent-relay_default Creating 
+ Network agent-relay_default Created 
+ Network agent-relay_default Created 
+ Container agent-relay-postgres-1 Creating 
+ Container agent-relay-postgres-1 Created 
+ Container agent-relay-agent-relay-1 Creating 
+ Container agent-relay-agent-relay-1 Created 
+ Container agent-relay-postgres-1 Starting 
+ Container agent-relay-postgres-1 Started 
+ Container agent-relay-postgres-1 Waiting 
+ Container agent-relay-postgres-1 Healthy 
+ Container agent-relay-agent-relay-1 Starting 
+ Container agent-relay-agent-relay-1 Started 

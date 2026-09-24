@@ -1,0 +1,24 @@
+=== kubectl get nodes ===
+NAME                        STATUS   ROLES           AGE   VERSION
+agent-relay-control-plane   Ready    control-plane   29m   v1.37.0
+
+=== kubectl get pods -o wide ===
+NAME                           READY   STATUS    RESTARTS   AGE     IP            NODE                        NOMINATED NODE   READINESS GATES
+agent-relay-8655cdb465-gq5q2   1/1     Running   0          3m55s   10.244.0.11   agent-relay-control-plane   <none>           <none>
+agent-relay-8655cdb465-k8d9w   1/1     Running   0          3m45s   10.244.0.12   agent-relay-control-plane   <none>           <none>
+postgres-5785ff89bf-gpwfs      1/1     Running   0          26m     10.244.0.8    agent-relay-control-plane   <none>           <none>
+
+=== kubectl get pvc ===
+NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+postgres-pvc   Bound    pvc-1a117c0c-6e6d-45c0-9395-747aa3019238   1Gi        RWO            standard       <unset>                 26m
+
+=== kubectl get svc ===
+NAME          TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+agent-relay   ClusterIP   10.96.82.192    <none>        8000/TCP   26m
+kubernetes    ClusterIP   10.96.0.1       <none>        443/TCP    29m
+postgres      ClusterIP   10.96.161.197   <none>        5432/TCP   26m
+
+=== kubectl get deployments ===
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+agent-relay   2/2     2            2           26m
+postgres      1/1     1            1           26m

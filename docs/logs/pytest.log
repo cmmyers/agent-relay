@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.16, pytest-9.1.1, pluggy-1.6.0 -- /Users/calcodes/apps/datatalks/agent-relay/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/calcodes/apps/datatalks/agent-relay
+configfile: pyproject.toml
+plugins: anyio-4.14.2
+collecting ... collected 5 items
+
+test_agent_relay.py::test_protocol_idempotency_terminal_retry_and_auth_boundary PASSED [ 20%]
+test_agent_relay.py::test_sqlite_atomic_claims_distribute_without_overlap PASSED [ 40%]
+test_agent_relay.py::test_expiry_requeues_and_old_token_is_stale_before_recovery PASSED [ 60%]
+test_agent_relay.py::test_end_to_end_task_delivery_and_result_visible_to_sender PASSED [ 80%]
+test_agent_relay.py::test_dashboard_is_asset_and_invalid_input_is_documented_error PASSED [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/fastapi/testclient.py:1
+  /Users/calcodes/apps/datatalks/agent-relay/.venv/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 5 passed, 1 warning in 1.40s =========================
