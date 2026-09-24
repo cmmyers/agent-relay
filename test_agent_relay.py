@@ -152,6 +152,53 @@ def test_expiry_requeues_and_old_token_is_stale_before_recovery():
         assert second.json()["claim_token"] != first["claim_token"]
 
 
+def test_end_to_end_task_delivery_and_result_visible_to_sender():
+    """Acceptance scenario 1 from SPEC.md, automated: register two agents,
+    send a task, claim and complete it, and confirm the sender sees the
+    completed result exactly as the dashboard would show it."""
+    with TestClient(main.app) as client:
+        sender, sender_headers = register(client, "alice")
+        recipient, recipient_headers = register(client, "uppercase")
+
+        sent = client.post(
+            "/api/v1/tasks",
+            headers=sender_headers,
+            json={"to": recipient["agent_id"], "input": "hello agent relay"},
+        )
+        assert sent.status_code == 201
+        task_id = sent.json()["task_id"]
+        assert sent.json()["status"] == "queued"
+
+        claim = client.post(
+            "/api/v1/tasks/claim",
+            headers=recipient_headers,
+            json={"worker_id": "bob-worker-1", "wait_seconds": 0},
+        )
+        assert claim.status_code == 200
+        claim_data = claim.json()
+
+        mid_flight = client.get(f"/api/v1/tasks/{task_id}", headers=sender_headers)
+        assert mid_flight.json()["status"] == "processing"
+
+        complete = client.post(
+            f"/api/v1/tasks/{task_id}/complete",
+            headers=recipient_headers,
+            json={"claim_token": claim_data["claim_token"], "output": claim_data["input"].upper()},
+        )
+        assert complete.status_code == 200
+        assert complete.json()["status"] == "completed"
+
+        final = client.get(f"/api/v1/tasks/{task_id}", headers=sender_headers)
+        assert final.status_code == 200
+        body = final.json()
+        assert body["status"] == "completed"
+        assert body["output"] == "HELLO AGENT RELAY"
+        assert body["error"] is None
+
+        sent_list = client.get("/api/v1/tasks?direction=sent", headers=sender_headers).json()
+        assert any(item["task_id"] == task_id and item["status"] == "completed" for item in sent_list["items"])
+
+
 def test_dashboard_is_asset_and_invalid_input_is_documented_error():
     with TestClient(main.app) as client:
         page = client.get("/")
