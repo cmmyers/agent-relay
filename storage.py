@@ -25,6 +25,7 @@ from database import (
     Attempt,
     LEASE_SECONDS,
     MAX_ATTEMPTS,
+    SUPPORTS_ROW_LOCKING,
     Task,
     as_db_time,
     db_session,
@@ -144,12 +145,15 @@ def claim_one(agent_id: str, worker_id: str | None) -> dict[str, Any] | None:
     with immediate_transaction() as db:
         now = utcnow()
         recover_expired_in_session(db, now)
-        task = db.scalar(
+        query = (
             select(Task)
             .where(Task.recipient_id == agent_id, Task.status == "queued")
             .order_by(Task.created_at, Task.id)
             .limit(1)
         )
+        if SUPPORTS_ROW_LOCKING:
+            query = query.with_for_update(skip_locked=True)
+        task = db.scalar(query)
         if task is None:
             return None
         if task.attempt_count >= MAX_ATTEMPTS:
